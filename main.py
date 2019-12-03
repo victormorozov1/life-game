@@ -5,8 +5,8 @@ import copy
 
 
 class Life(Game):
-    def __init__(self, birth=(3, 4), live=(2, 4), sleep_time=1):
-        super().__init__(n, n, sz, sz, [(255, 255, 255), (0, 0, 0)], sleep_time=sleep_time)
+    def __init__(self, birth=(3, 4), live=(2, 4), sleep_time=1, margin=1):
+        super().__init__(n, n, sz, sz, [(255, 255, 255), (0, 0, 0)], sleep_time=sleep_time, margin=margin)
         self.birth = birth
         self.live = live
         print(self.live, self.birth)
@@ -24,8 +24,7 @@ class Life(Game):
         for i in [-1, 0, 1]:
             for j in [-1, 0, 1]:
                 if i != 0 or j != 0:
-                    if x + i in range(self.board.n) and y + j in range(self.board.m):
-                        ret += self.board2[x + i][y + j]
+                    ret += self.board2[(x + i + self.board.n) % self.board.n][(y + j + self.board.m) % self.board.m]
         return ret
 
     def game_iteration(self):
@@ -40,10 +39,8 @@ class Life(Game):
                 else:
                     if nola in range(*self.birth):
                         self.board.cells[i][j].click()
-        print(self.board2, self.board)
-
 
 
 if __name__ == '__main__':
-    game = Life(sleep_time=0)
+    game = Life(sleep_time=0, margin=0)
     game.run()

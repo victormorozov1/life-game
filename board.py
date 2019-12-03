@@ -64,10 +64,10 @@ class Cell:
 
 
 class Game:
-    def __init__(self, nx, ny, szx, szy, cell_colors, cell=Cell, sleep_time=1):
+    def __init__(self, nx, ny, szx, szy, cell_colors, cell=Cell, sleep_time=1, margin=0):
         pygame.init()
         self.win = pygame.display.set_mode((nx * szx, ny * szy))
-        self.board = Board(nx, ny, szx, cell, self.win, cell_colors, margin=0)
+        self.board = Board(nx, ny, szx, cell, self.win, cell_colors, margin=margin, grid_color=(188, 188, 188))
         self.sleep_time = sleep_time
         self.pause = 1
 
