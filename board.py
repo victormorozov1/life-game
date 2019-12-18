@@ -1,6 +1,7 @@
 import pygame
 from constants import *
 import copy
+from time import sleep
 
 
 class Board:
@@ -95,4 +96,4 @@ class Game:
                 # print('game iteration')
                 self.game_iteration()
             self.board.show()
-            pygame.time.wait(self.sleep_time)
+            sleep(self.sleep_time)

@@ -2,6 +2,7 @@ import pygame
 from board import *
 from constants import *
 import copy
+from time import sleep
 
 
 class Life(Game):
@@ -13,7 +14,14 @@ class Life(Game):
 
     def handle_event(self, ev):
         if ev.type == pygame.MOUSEBUTTONDOWN:
-            self.board.cells[ev.pos[0] // self.board.sz][ev.pos[1] // self.board.sz].click()
+            if ev.button == 1:
+                self.board.cells[ev.pos[0] // self.board.sz][ev.pos[1] // self.board.sz].click()
+            elif ev.button == 4:
+                self.sleep_time *= 0.8
+                print(self.sleep_time)
+            elif ev.button == 5:
+                self.sleep_time *= 1.2
+                print(self.sleep_time)
         elif ev.type == pygame.KEYDOWN:
             print('space pressed')
             if ev.key == pygame.K_SPACE:
@@ -42,5 +50,5 @@ class Life(Game):
 
 
 if __name__ == '__main__':
-    game = Life(sleep_time=0, margin=0)
+    game = Life(sleep_time=0.1, margin=0)
     game.run()
